@@ -1,0 +1,28 @@
+2017-08-25 13:59:23,116 WARN  io.prediction.tools.console.Template$ [main] - template.json does not exist. Template metadata will not be available. (This is safe to ignore if you are not working on a template.)
+2017-08-25 13:59:25,318 ERROR io.prediction.tools.console.Console$ [main] - Engine YfhBmGEHfIpFiHLEcSTpHVRcbRFx3BXw 81401f6e4e1bdbf4a7b35af829d15ec27bf9a58c cannot be found in the system.
+2017-08-25 13:59:25,319 ERROR io.prediction.tools.console.Console$ [main] - Possible reasons:
+2017-08-25 13:59:25,320 ERROR io.prediction.tools.console.Console$ [main] - - the engine is not yet built by the 'build' command;
+2017-08-25 13:59:25,321 ERROR io.prediction.tools.console.Console$ [main] - - the meta data store is offline.
+2017-08-25 14:47:09,227 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /Users/jeurboy/Documents/workspace/docker-graphql/docker/manifest.json
+2017-08-25 14:47:09,232 WARN  io.prediction.tools.console.Template$ [main] - template.json does not exist. Template metadata will not be available. (This is safe to ignore if you are not working on a template.)
+2017-08-25 14:47:10,868 ERROR io.prediction.tools.console.Console$ [main] - Engine YfhBmGEHfIpFiHLEcSTpHVRcbRFx3BXw 81401f6e4e1bdbf4a7b35af829d15ec27bf9a58c cannot be found in the system.
+2017-08-25 14:47:10,869 ERROR io.prediction.tools.console.Console$ [main] - Possible reasons:
+2017-08-25 14:47:10,870 ERROR io.prediction.tools.console.Console$ [main] - - the engine is not yet built by the 'build' command;
+2017-08-25 14:47:10,871 ERROR io.prediction.tools.console.Console$ [main] - - the meta data store is offline.
+2017-08-25 14:47:36,360 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /Users/jeurboy/Documents/workspace/docker-graphql/docker/manifest.json
+2017-08-25 14:47:36,366 WARN  io.prediction.tools.console.Template$ [main] - template.json does not exist. Template metadata will not be available. (This is safe to ignore if you are not working on a template.)
+2017-08-25 14:47:38,191 ERROR io.prediction.tools.console.Console$ [main] - Engine YfhBmGEHfIpFiHLEcSTpHVRcbRFx3BXw 81401f6e4e1bdbf4a7b35af829d15ec27bf9a58c cannot be found in the system.
+2017-08-25 14:47:38,192 ERROR io.prediction.tools.console.Console$ [main] - Possible reasons:
+2017-08-25 14:47:38,192 ERROR io.prediction.tools.console.Console$ [main] - - the engine is not yet built by the 'build' command;
+2017-08-25 14:47:38,193 ERROR io.prediction.tools.console.Console$ [main] - - the meta data store is offline.
+2017-08-25 14:48:05,872 INFO  io.prediction.tools.console.Console$ [main] - Using existing engine manifest JSON at /Users/jeurboy/Documents/workspace/docker-graphql/docker/manifest.json
+2017-08-25 14:48:05,881 WARN  io.prediction.tools.console.Template$ [main] - template.json does not exist. Template metadata will not be available. (This is safe to ignore if you are not working on a template.)
+2017-08-25 14:48:07,480 ERROR io.prediction.tools.console.Console$ [main] - Engine YfhBmGEHfIpFiHLEcSTpHVRcbRFx3BXw 81401f6e4e1bdbf4a7b35af829d15ec27bf9a58c cannot be found in the system.
+2017-08-25 14:48:07,481 ERROR io.prediction.tools.console.Console$ [main] - Possible reasons:
+2017-08-25 14:48:07,482 ERROR io.prediction.tools.console.Console$ [main] - - the engine is not yet built by the 'build' command;
+2017-08-25 14:48:07,482 ERROR io.prediction.tools.console.Console$ [main] - - the meta data store is offline.
+2017-08-25 14:48:37,253 WARN  io.prediction.tools.console.Template$ [main] - template.json does not exist. Template metadata will not be available. (This is safe to ignore if you are not working on a template.)
+2017-08-25 14:48:39,121 ERROR io.prediction.tools.console.Console$ [main] - Engine YfhBmGEHfIpFiHLEcSTpHVRcbRFx3BXw 81401f6e4e1bdbf4a7b35af829d15ec27bf9a58c cannot be found in the system.
+2017-08-25 14:48:39,122 ERROR io.prediction.tools.console.Console$ [main] - Possible reasons:
+2017-08-25 14:48:39,122 ERROR io.prediction.tools.console.Console$ [main] - - the engine is not yet built by the 'build' command;
+2017-08-25 14:48:39,123 ERROR io.prediction.tools.console.Console$ [main] - - the meta data store is offline.

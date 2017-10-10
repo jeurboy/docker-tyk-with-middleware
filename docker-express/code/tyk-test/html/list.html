@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset='UTF-8'>
+ 
+ <title>Responsive Table</title>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <link rel="stylesheet" href="/css/style.css">
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/rr-1.2.3/datatables.min.css"/>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.3/css/rowReorder.dataTables.min.css"/>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/rr-1.2.3/datatables.min.js"></script>
+
+ <script src="/js/main.js"></script>
+
+ <script type="text/javascript" charset="utf-8">
+  const url = "http://localhost:4000/privilege/get"
+
+  var dataSet = [];
+  var table;
+  var editor;
+  var sequence = 1;
+
+  $.getJSON(url, function( data ) {
+    $.each( data, function( key, val ) {
+      dataSet.push([
+        sequence++ ,
+      	val.auth_type ,
+      	(val.pattern) ? val.pattern : '' ,
+      	val.allow_ip ,
+      	val.rule ,
+      ])
+    });
+  });
+
+  $(document).ready(function() {
+    table = $('#records_table').DataTable( {
+      data: dataSet,
+      columns: [
+          { title: "sequence"   , className: 'reorder' },
+          { title: "auth_type"  , className: 'reorder' },
+          { title: "pattern"  , className: 'reorder' },
+          { title: "allow_ip"   , className: 'reorder' },
+          { title: "rule"     , className: 'reorder' },
+      ],
+
+      rowReorder: {
+          selector: 'tr'
+      },
+      columnDefs: [
+          { targets: 0, visible: true }
+      ]
+    })
+
+    redrawTable('#records_table', dataSet);
+    document.getElementById('tr_area').value = JSON.stringify( formatDataSet(getTableData('#records_table', 'html')) ) ;
+
+    addTable = $('#add_table').DataTable( {
+      data: [] ,
+      columns: [
+          { title: "add" , className: 'reorder'},
+          { title: "auth_type" , className: 'reorder'},
+          { title: "pattern" , className: 'reorder'},
+          { title: "allow_ip" , className: 'reorder'},
+          { title: "rule" , className: 'reorder'}
+      ],
+      searching  : false,
+      paging  : false,
+      ordering : false,
+      info  : false
+    })
+    addTable.row.add([
+     'Add new rule',
+     '<input type="text" id=col['+counter+'][1] value="pattern" readonly="true" class="textbox"\>',
+     '<input type="text" id=col['+counter+'][2] value="\\/makro\\/\\d+" class="textbox" \>', 
+     '<input type="text" id=col['+counter+'][3] value=\'["172.19.0.1", "172.19.0.12"]\' class="textbox" >',
+     '<input type="text" id=col['+counter+'][4] value="permit" class="textbox" \>',
+    ]).draw();
+  });
+
+ </script>
+</head>
+
+<body>
+ <div id="page-wrap"  class="form-style-6">
+  <form action="/privilege/set" method="post" target="result"  enctype="application/x-www-form-urlencoded">
+  <h1>Rule based config</h1>
+   <table id="records_table" class="display" cellspacing="0" width="100%"></table>
+
+   <table id="add_table" class="display" cellspacing="0" width="100%">
+       <tbody>
+          <tr>
+              <th><input type="text" id="col[0][1]" value="pattern" readonly="true" class="textbox"\></th>
+              <th><input type="text" id="col[0][2]" value="\/makro\/\d+" class="textbox" \></th>
+              <th><input type="text" id="col[0][3]" value='["172.19.0.1", "172.19.0.12"]' class="textbox" \></th>
+              <th><input type="text" id="col[0][4]" value="permit" class="textbox" \></th>
+          </tr>
+      </tbody>
+   </table>
+
+   <div class="clear"></div><br/>
+
+   <input class="myButton" id="add"    type="button" value="Add" >
+   <input class="myButton" id="delete" type="button" value="Delete" >
+   <input class="myButton" id="fetch"  type="button" value="Fetch" >
+   <input class="myButton" id="submit" type="submit" value="Submit" >
+
+   <br/>
+   <textarea placeholder="This is an awesome comment box" rows="20" name="privilege" id="tr_area" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="display:none"></textarea>
+   <br/>
+
+  </form>
+  <iframe name="result"></iframe>
+ </div>
+
+<script type="text/javascript" charset="utf-8">
+  var counter = 0
+
+	$('#fetch').click( function() {
+    dataSet = getTableData('#records_table', 'array')
+
+		document.getElementById('tr_area').value = JSON.stringify(formatDataSet(getTableData('#records_table', 'html'))) ;
+	})
+
+	$('#submit').click( function() {
+    dataSet = getTableData('#records_table', 'array')
+
+    document.getElementById('tr_area').value = JSON.stringify(formatDataSet(getTableData('#records_table', 'html'))) ;
+
+  	if(document.getElementById('tr_area').value == '') {
+  		alert('Empty');
+
+  		return false
+  	}
+
+    if(confirm('Edit?')) return true;
+	})
+
+	$('#records_table').on( 'click', 'tr', function () {
+	    if ( $(this).hasClass('selected') ) {
+	      $(this).removeClass('selected');
+	    }
+	    else {
+	        table.$('tr.selected').removeClass('selected');
+	        $(this).addClass('selected');
+	    }
+	} );
+
+	$('#delete').click( function () {
+    console.log(table.row('.selected').index())
+
+    dataSet.splice(table.row('.selected').index(),1);
+
+    redrawTable('#records_table', dataSet);
+  } )
+
+  $('#add').on( 'click', function () { 
+    var addRecord = getTableForm(addTable)
+
+    addRecord.unshift(sequence++)
+    addRecord[3] = JSON.parse(stripslashes(addRecord[3]))
+  	dataSet.unshift(addRecord)
+
+    console.log(dataSet)
+    redrawTable('#records_table', dataSet);
+	})
+</script>
+
+</body>
+</html>
